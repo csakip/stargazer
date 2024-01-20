@@ -13,6 +13,7 @@ import {
   IVault,
 } from 'components/models';
 import { NewCampaign } from 'src/lib/campaign';
+import { NewJournal } from 'src/lib/campaign';
 import { useConfig } from './config';
 import { exportFile } from 'quasar';
 import { db } from 'src/lib/db';
@@ -121,7 +122,7 @@ export const useCampaign = defineStore({
     },
 
     clearJournal() {
-      this.data.journal = [];
+      this.data.journal = [NewJournal()];
     },
 
     async populateStore() {
