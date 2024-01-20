@@ -4,6 +4,7 @@
     <o-input label="Story Clue" v-model="data.storyClue" @roll="roll.storyClue" />
     <o-input label="Anomaly Effect" v-model="data.anomalyEffect" @roll="roll.anomalyEffect" />
     <o-input label="Combat Action" v-model="data.combatAction" @roll="roll.combatAction" />
+    <o-input label="Sector Trouble" v-model="data.sectorTrouble" @roll="roll.sectorTrouble" />
     <o-btns clear @clear="btns.Clear" />
   </div>
 </template>
@@ -25,6 +26,7 @@ export default defineComponent({
       combatAction: '',
       storyComplication: '',
       storyClue: '',
+      sectorTrouble: '',
     });
 
     const roll = {
@@ -33,6 +35,8 @@ export default defineComponent({
       storyClue: () => (data.value.storyClue = oracle.roll('Starforged/Oracles/Misc/Story_Clue')),
       anomalyEffect: () => (data.value.anomalyEffect = oracle.roll('Starforged/Oracles/Misc/Anomaly_Effect')),
       combatAction: () => (data.value.combatAction = oracle.roll('Starforged/Oracles/Misc/Combat_Action')),
+      sectorTrouble: () =>
+        (data.value.sectorTrouble = oracle.roll('Starforged/Oracles/Character_Creation/Sector_Trouble')),
     };
 
     const btns = {
@@ -42,6 +46,7 @@ export default defineComponent({
           combatAction: '',
           storyComplication: '',
           storyClue: '',
+          sectorTrouble: '',
         };
       },
     };
