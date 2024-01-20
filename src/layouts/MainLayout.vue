@@ -138,6 +138,16 @@
           </q-item-section>
         </q-item>
 
+        <q-item clickable v-ripple @click="showJournalDelete = true">
+          <q-item-section avatar>
+            <q-icon name="close" />
+          </q-item-section>
+          <q-item-section>
+            Clear Journal
+            <q-tooltip>Delete all Journal entries</q-tooltip>
+          </q-item-section>
+        </q-item>
+
         <q-separator size="lg" />
 
         <q-item>
@@ -361,6 +371,29 @@
       </q-card>
     </q-dialog>
 
+    <q-dialog v-model="showJournalDelete" :maximized="$q.platform.is.mobile">
+      <q-card>
+        <q-card-section class="text-center text-bold bg-secondary">Delete Journal entries</q-card-section>
+        <q-card-section class="text-h6 text-center">Warning!</q-card-section>
+        <q-card-section class="text-subtitle">
+          <p>Deleting journal entries cannot be reversed. Consider exporting before deleting.</p>
+          <q-card-section class="text-h6 text-center">Delete journal entries?</q-card-section>
+        </q-card-section>
+
+        <q-card-actions align="center">
+          <q-btn
+            color="warning"
+            label="DELETE"
+            @click="
+              campaign.clearJournal();
+              showJournalDelete = false;
+            "
+          />
+          <q-btn color="primary" label="Do not delete" @click="showJournalDelete = false" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
     <roller v-model="showRoller" :btnSize="btnSize" />
   </q-layout>
 </template>
@@ -394,6 +427,7 @@ export default defineComponent({
     const campaignToDelete = ref('');
     const campaignToDeleteName = ref('');
     const showCampaignDelete = ref(false);
+    const showJournalDelete = ref(false);
 
     const fileToLoad = ref(null);
     const showDataLoad = ref(false);
@@ -467,6 +501,7 @@ export default defineComponent({
       addCampaign,
       removeCampaign,
       showCampaignDelete,
+      showJournalDelete,
       campaignToDelete,
       campaignToDeleteName,
 

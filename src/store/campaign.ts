@@ -120,6 +120,10 @@ export const useCampaign = defineStore({
       if (status != true) alert(status);
     },
 
+    clearJournal() {
+      this.data.journal = [];
+    },
+
     async populateStore() {
       const config = useConfig();
       await config.populateStore();
